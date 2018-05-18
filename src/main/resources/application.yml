@@ -6,8 +6,8 @@ server:
 security:
   oauth2:
     client:
-      clientId: 120694604425-lbpep12qhfet13aqm0tsalgrqs5qqibd.apps.googleusercontent.com
-      clientSecret: AUEg89CcB8BgWvXjxEGMhFKp 
+      clientId: .apps.googleusercontent.com
+      clientSecret:  
       accessTokenUri: https://www.googleapis.com/oauth2/v4/token
       userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
       clientAuthenticationScheme: form
@@ -15,5 +15,5 @@ security:
     resource:
       userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
       preferTokenInfo: true
-#https://console.developers.google.com/apis/credentials/oauthclient/120694604425-lbpep12qhfet13aqm0tsalgrqs5qqibd.apps.googleusercontent.com?project=fgcf2017api
+
 
