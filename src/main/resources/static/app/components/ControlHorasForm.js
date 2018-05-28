@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Formulario from './common/Formulario';
 import ControlHorasTable from './ControlHorasTable';
 import BarraBusqueda from './common/BarraBusqueda';
-import validateInput from './validaciones/Proyecto';
+import validateInput from './validate/Proyecto';
 
 import SelectMultipleDualListBox from './common/SelectMultipleDualListBox';
 

@@ -19,3 +19,5 @@ node_modules/
 target/
 
 src/main/resources/application.yml
+src/main/resources/static/app/bundle.js
+src/main/resources/static/app/bundle.js.map

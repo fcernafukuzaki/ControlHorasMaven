@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Formulario from './common/Formulario';
 import CargoTable from './CargoTable';
 import BarraBusqueda from './common/BarraBusqueda';
-import validateInput from './validaciones/Cargo';
+import validateInput from './validate/Cargo';
 import { getCargos, getCargo, addCargo, updateCargo } from '../actions/actionCargo';
 
 class CargoForm extends Component {

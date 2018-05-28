@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Formulario from './common/Formulario';
 import PeriodoFacturacionTable from './PeriodoFacturacionTable';
 import BarraBusqueda from './common/BarraBusqueda';
-import validateInput from './validaciones/PeriodoFacturacion';
+import validateInput from './validate/PeriodoFacturacion';
 import { getPeriodoFacturacion, addPeriodoFacturacion, updatePeriodoFacturacion} from '../actions/actionPeriodoFacturacion';
 
 var dateFormat = require('dateformat');
