@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-//import { Router, Route, browserHistory, Link } from 'react-router'; 
+//import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Router, Route, browserHistory, Link } from 'react-router'; 
 //import { browserHistory } from 'react-router';
 
 //import store, { history } from './store';
@@ -38,6 +38,7 @@ const app = document.getElementById('root');
 //const app = document.querySelector('.container');
 //<Router history={browserHistory}>
 ReactDOM.render(
+	
 	<Provider store={store}>
 		<div>
 			<Router>
@@ -48,4 +49,6 @@ ReactDOM.render(
 			</Router>
 		</div>
 	</Provider>
+	
+	
 	, app);

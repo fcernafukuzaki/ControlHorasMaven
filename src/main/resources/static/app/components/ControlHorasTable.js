@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import moment from 'moment';
 
 import Table from './common/Table';
 
-var dateFormat = require('dateformat');
+//var dateFormat = require('dateformat');
 
 class ControlHorasTable extends Component {
 	constructor(){
@@ -32,7 +33,8 @@ class ControlHorasTable extends Component {
 		}
 		return ( rows )
 	}
-	
+	/*<td>{dateFormat(row.fechaInicio, "dd/mm/yyyy")}</td>
+			<td>{dateFormat(row.fechaFin, "dd/mm/yyyy")}</td>*/
 	getTableBodyTd(row){
 		return (
 		<tr key={row.idProyecto}>
@@ -40,8 +42,8 @@ class ControlHorasTable extends Component {
 			<td>{row.nombre}</td>
 			<td>{row.tipoProyecto.nombre}</td>
 			<td>{row.liderCliente.nombreCompleto}</td>
-			<td>{dateFormat(row.fechaInicio, "dd/mm/yyyy")}</td>
-			<td>{dateFormat(row.fechaFin, "dd/mm/yyyy")}</td>
+			<td>{moment(row.fechaInicio, "dd/mm/yyyy")}</td>
+			<td>{moment(row.fechaFin, "dd/mm/yyyy")}</td>
 			<td><a className="btn btn-danger delete-order" onClick={this.props.onClick.bind(this,row)}>Actualizar</a></td>
 		</tr>
 		)

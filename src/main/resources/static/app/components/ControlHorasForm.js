@@ -3,6 +3,8 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 
+import moment from 'moment';
+
 import Formulario from './common/Formulario';
 import ControlHorasTable from './ControlHorasTable';
 import BarraBusqueda from './common/BarraBusqueda';
@@ -21,7 +23,7 @@ import { getSupervisor, getAnalistaSeguimiento, getAnalistaFabrica } from '../ac
 import { getTipoProyecto } from '../actions'
 import { getLideresCliente, getLiderCliente } from '../actions/actionLiderCliente'
 
-var dateFormat = require('dateformat');
+//var dateFormat = require('dateformat');
 
 class ProyectoForm extends Component {
 	constructor(props){
@@ -185,8 +187,10 @@ class ProyectoForm extends Component {
 			idLiderCliente: row.liderCliente.idLiderCliente,
 			
 			liderCliente: row.liderCliente.idLiderCliente,
-			fechaInicio: dateFormat(row.fechaInicio, "yyyy-mm-dd"),
-			fechaFin: dateFormat(row.fechaFin, "yyyy-mm-dd"),
+			//fechaInicio: dateFormat(row.fechaInicio, "yyyy-mm-dd"),
+			//fechaFin: dateFormat(row.fechaFin, "yyyy-mm-dd"),
+			fechaInicio: moment(row.fechaInicio, "yyyy-mm-dd"),
+			fechaFin: moment(row.fechaFin, "yyyy-mm-dd"),
 			
 			supervisor: this.props.getProyectoSupervisorSelected({idProyecto: row.idProyecto}),
 			analistaSeguimiento: this.props.getProyectoAnalistaSeguimientoSelected({idProyecto: row.idProyecto}),
@@ -444,7 +448,8 @@ class ProyectoForm extends Component {
 			tableHead.push(
 				{
 					key: elemento,
-					nombre: dateFormat(elemento, "dd/mm/yyyy")
+					//nombre: dateFormat(elemento, "dd/mm/yyyy")
+					nombre: moment(elemento, "dd/mm/yyyy")
 				}
 			)
 		})

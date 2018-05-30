@@ -1,17 +1,20 @@
-import React from 'react'
-//import {Link} from 'react-router'
+import React, {Component} from 'react'
+import {createPortal} from 'react-dom'
 
-export default class Footer extends React.Component {
-    
-    render() {
-        return (
-	        <footer className="footer">
-	            <div className="container" >
-		            <div className="footer-copyright">
-			            <p>© 2018 Copyright</p>
-			        </div>
-		        </div>
-	        </footer>
-        )
-    }
+class Footer extends Component {
+  render() {
+    return createPortal(
+      <footer className="footer">
+        <div className="container" >
+          <div className="footer-copyright">
+            <p>© 2018 Copyright</p>
+          </div>
+        </div>
+      </footer>
+    ,
+    document.getElementById('footer')
+    )
+  }
 }
+
+export default Footer;

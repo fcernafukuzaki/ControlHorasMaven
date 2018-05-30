@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-//import { Router, Route, browserHistory, Link } from 'react-router';
+import React, {Component} from 'react';
+//import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Router, Route, browserHistory, Link } from 'react-router';
 
-export default class NavBar extends React.Component {
+export default class NavBar extends Component {
 	render() {
 		return (
 			<nav className="navbar navbar-default navbar-expand-lg navbar-light bg-light" role="navigation">

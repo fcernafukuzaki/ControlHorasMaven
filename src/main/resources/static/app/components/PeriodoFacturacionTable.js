@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 
+import moment from 'moment';
+
 import Table from './common/Table';
 
-var dateFormat = require('dateformat');
+//var dateFormat = require('dateformat');
 
 class PeriodoFacturacionTable extends Component {
 	constructor(){
@@ -38,8 +40,8 @@ class PeriodoFacturacionTable extends Component {
 		<tr key={row.idPeriodoFacturacion}>
 			<td>{row.periodo}</td>
 			<td>{row.horasObjetivo}</td>
-			<td>{dateFormat(row.fechaInicio, "dd/mm/yyyy")}</td>
-			<td>{dateFormat(row.fechaFin, "dd/mm/yyyy")}</td>
+			<td>{moment(row.fechaInicio, "dd/mm/yyyy")}</td>
+			<td>{moment(row.fechaFin, "dd/mm/yyyy")}</td>
 			<td><a className="btn btn-danger delete-order" onClick={this.props.onClick.bind(this,row)}>Actualizar</a></td>
 		</tr>
 		)
