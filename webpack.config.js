@@ -7,7 +7,7 @@ module.exports = {
     debug: true,
     output: {
         path: __dirname,
-        filename: './src/main/resources/static/bundle.js'
+        filename: './src/main/resources/static/home.js'
     },
     module: {
         loaders: [
