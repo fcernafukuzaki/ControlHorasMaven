@@ -5,9 +5,9 @@ server:
 
 security:
   oauth2:
-    client:
-      clientId: .apps.googleusercontent.com
-      clientSecret:  
+    client: 
+      clientId: 120694604425-lbpep12qhfet13aqm0tsalgrqs5qqibd.apps.googleusercontent.com
+      clientSecret:  AUEg89CcB8BgWvXjxEGMhFKp
       accessTokenUri: https://www.googleapis.com/oauth2/v4/token
       userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
       clientAuthenticationScheme: form

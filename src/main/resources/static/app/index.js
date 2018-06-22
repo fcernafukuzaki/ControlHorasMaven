@@ -19,7 +19,7 @@ import App from './components/app';
 import reducers from './reducers';
 
 import NavBar from './components/NavBar.js';
-//import Footer from './components/Footer.js';
+import Footer from './components/Footer.js';
 //import SideBar from './components/SideBar.js';
 
 

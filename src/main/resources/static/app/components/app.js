@@ -3,8 +3,8 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import { getEmpleados } from '../actions'
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-//import { Router, Route, browserHistory, Link } from 'react-router';
+//import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Router, Route, browserHistory, Link } from 'react-router';
 
 //Import Form
 import ProyectoForm from './ProyectoForm'
