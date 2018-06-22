@@ -3,13 +3,15 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 
+import moment from 'moment';
+
 import Formulario from './common/Formulario';
 import PeriodoFacturacionTable from './PeriodoFacturacionTable';
 import BarraBusqueda from './common/BarraBusqueda';
 import validateInput from './validate/PeriodoFacturacion';
 import { getPeriodoFacturacion, addPeriodoFacturacion, updatePeriodoFacturacion} from '../actions/actionPeriodoFacturacion';
 
-var dateFormat = require('dateformat');
+//var dateFormat = require('dateformat');
 
 class PeriodoFacturacionForm extends Component {
 	constructor(props){
@@ -101,8 +103,8 @@ class PeriodoFacturacionForm extends Component {
 			idPeriodoFacturacion: row.idPeriodoFacturacion,
 			periodo: row.periodo,
 			horasObjetivo : row.horasObjetivo,
-			fechaInicio : dateFormat(row.fechaInicio, "yyyy-mm-dd"),
-			fechaFin : dateFormat(row.fechaFin, "yyyy-mm-dd")
+			fechaInicio : moment(row.fechaInicio, "yyyy-mm-dd"),
+			fechaFin : moment(row.fechaFin, "yyyy-mm-dd")
 		})
 	}
 	
