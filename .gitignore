@@ -17,6 +17,7 @@ hs_err_pid*
 
 node_modules/
 target/
+logs/
 
 src/main/resources/application.yml
 src/main/resources/static/app/bundle.js
