@@ -55,7 +55,7 @@ class NavBar extends Component {
 									Mantenimiento
 								</a>
 								<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a className="dropdown-item" href="/ControlHoras/periodoFacturacion.html">Periodo facturación</a>
+									<a className="dropdown-item" href="/periodoFacturacion.html">Periodo facturación</a>
 								
 									<a className="dropdown-item" href="#">Empleados</a>
 									
