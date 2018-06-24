@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import controlhoras.util.Util;
 
 @Entity
-@Table(name = "controlhoras.periodofacturacion" , catalog = Util.CATALOG)
+@Table(name = "periodofacturacion" , catalog = Util.CATALOG)
 public class PeriodoFacturacion {
 
 	private int idPeriodoFacturacion;
