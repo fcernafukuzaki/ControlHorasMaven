@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-
+//<img src="favicon.ico" width="30" height="30" className="d-inline-block align-top" />
+						
 class NavBar extends Component {
 	render() {
 		return (
 			<nav className="navbar navbar-default navbar-expand-lg navbar-light bg-light" role="navigation">
 				
 					<a className="navbar-brand" href="#">
-						<img src="favicon.ico" width="30" height="30" className="d-inline-block align-top" />
 						Control Horas
 						</a>
 					
