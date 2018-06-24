@@ -1,9 +1,13 @@
-import React from 'react';
-import { Component } from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 
 import moment from 'moment';
+
+
+import HomeLayout from'../../pages/components/HomeLayout';
+import HandlerError from '../../error/containers/handler-error';
+
 
 import Formulario from './common/Formulario';
 import PeriodoFacturacionTable from './PeriodoFacturacionTable';
@@ -199,6 +203,10 @@ class PeriodoFacturacionForm extends Component {
 			}
 		
 		return (
+		
+		<HandlerError>
+			<HomeLayout>
+		
 			<div>
 				<Formulario form={form} />
 				
@@ -207,6 +215,9 @@ class PeriodoFacturacionForm extends Component {
 				<PeriodoFacturacionTable tableBody={this.props.periodosFacturacion} filter={this.state.filter} onClick={this.onClick.bind(this)} />
 				
 			</div>
+			
+			</HomeLayout>
+		</HandlerError>
 		);
 	}
 }

@@ -18771,7 +18771,7 @@
 									{ className: "dropdown-menu", "aria-labelledby": "navbarDropdown" },
 									_react2.default.createElement(
 										"a",
-										{ className: "dropdown-item", href: "#" },
+										{ className: "dropdown-item", href: "/periodoFacturacion.html" },
 										"Periodo facturaci\xF3n"
 									),
 									_react2.default.createElement(

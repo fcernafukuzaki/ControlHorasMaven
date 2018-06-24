@@ -36,12 +36,14 @@ class PeriodoFacturacionTable extends Component {
 	}
 	
 	getTableBodyTd(row){
+	//<td>{moment(row.fechaInicio, "dd/mm/yyyy")}</td>
+			//<td>{moment(row.fechaFin, "dd/mm/yyyy")}</td>
 		return (
 		<tr key={row.idPeriodoFacturacion}>
 			<td>{row.periodo}</td>
 			<td>{row.horasObjetivo}</td>
-			<td>{moment(row.fechaInicio, "dd/mm/yyyy")}</td>
-			<td>{moment(row.fechaFin, "dd/mm/yyyy")}</td>
+			<td>{row.fechaInicio}</td>
+			<td>{row.fechaFin}</td>
 			<td><a className="btn btn-danger delete-order" onClick={this.props.onClick.bind(this,row)}>Actualizar</a></td>
 		</tr>
 		)
