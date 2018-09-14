@@ -1,13 +1,15 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/main/resources/static/entries/home.js',
+  //entry: './src/main/resources/static/entries/home.js',
+  entry: './src/main/resources/static/entries/periodoFacturacion.js',
   devtool: 'sourcemaps',
   cache: true,
   debug: true,
   output: {
     path: __dirname,
-    filename: './src/main/resources/static/home.js'
+    //filename: './src/main/resources/static/home.js'
+    filename: './src/main/resources/static/periodoFacturacion.js'
   },
   module: {
     loaders: [

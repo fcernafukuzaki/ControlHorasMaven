@@ -47130,148 +47130,251 @@
 	'use strict';
 	
 	exports.__esModule = true;
-	exports.storages = exports.purgeStoredState = exports.persistStore = exports.getStoredState = exports.createTransform = exports.createPersistor = exports.autoRehydrate = undefined;
 	
-	var _autoRehydrate = __webpack_require__(339);
+	var _persistReducer = __webpack_require__(339);
 	
-	var _autoRehydrate2 = _interopRequireDefault(_autoRehydrate);
+	Object.defineProperty(exports, 'persistReducer', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_persistReducer).default;
+	  }
+	});
 	
-	var _createPersistor = __webpack_require__(342);
+	var _persistCombineReducers = __webpack_require__(345);
 	
-	var _createPersistor2 = _interopRequireDefault(_createPersistor);
+	Object.defineProperty(exports, 'persistCombineReducers', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_persistCombineReducers).default;
+	  }
+	});
 	
-	var _createTransform = __webpack_require__(347);
+	var _persistStore = __webpack_require__(347);
 	
-	var _createTransform2 = _interopRequireDefault(_createTransform);
+	Object.defineProperty(exports, 'persistStore', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_persistStore).default;
+	  }
+	});
 	
-	var _getStoredState = __webpack_require__(348);
+	var _createMigrate = __webpack_require__(348);
 	
-	var _getStoredState2 = _interopRequireDefault(_getStoredState);
+	Object.defineProperty(exports, 'createMigrate', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_createMigrate).default;
+	  }
+	});
 	
-	var _persistStore = __webpack_require__(349);
+	var _createTransform = __webpack_require__(349);
 	
-	var _persistStore2 = _interopRequireDefault(_persistStore);
+	Object.defineProperty(exports, 'createTransform', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_createTransform).default;
+	  }
+	});
 	
-	var _purgeStoredState = __webpack_require__(345);
+	var _getStoredState = __webpack_require__(343);
 	
-	var _purgeStoredState2 = _interopRequireDefault(_purgeStoredState);
+	Object.defineProperty(exports, 'getStoredState', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_getStoredState).default;
+	  }
+	});
+	
+	var _createPersistoid = __webpack_require__(342);
+	
+	Object.defineProperty(exports, 'createPersistoid', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_createPersistoid).default;
+	  }
+	});
+	
+	var _purgeStoredState = __webpack_require__(344);
+	
+	Object.defineProperty(exports, 'purgeStoredState', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_purgeStoredState).default;
+	  }
+	});
+	
+	var _constants = __webpack_require__(340);
+	
+	Object.keys(_constants).forEach(function (key) {
+	  if (key === "default" || key === "__esModule") return;
+	  Object.defineProperty(exports, key, {
+	    enumerable: true,
+	    get: function get() {
+	      return _constants[key];
+	    }
+	  });
+	});
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// @TODO remove in v5
-	var deprecated = function deprecated(cb, cb2, cb3) {
-	  console.error('redux-persist: this method of importing storages has been removed. instead use `import { asyncLocalStorage } from "redux-persist/storages"`');
-	  if (typeof cb === 'function') cb();
-	  if (typeof cb2 === 'function') cb2();
-	  if (typeof cb3 === 'function') cb3();
-	};
-	var deprecatedStorage = { getAllKeys: deprecated, getItem: deprecated, setItem: deprecated, removeItem: deprecated };
-	var storages = {
-	  asyncLocalStorage: deprecatedStorage,
-	  asyncSessionStorage: deprecatedStorage
-	};
-	
-	exports.autoRehydrate = _autoRehydrate2.default;
-	exports.createPersistor = _createPersistor2.default;
-	exports.createTransform = _createTransform2.default;
-	exports.getStoredState = _getStoredState2.default;
-	exports.persistStore = _persistStore2.default;
-	exports.purgeStoredState = _purgeStoredState2.default;
-	exports.storages = storages;
 
 /***/ }),
 /* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	exports.__esModule = true;
 	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	exports.default = autoRehydrate;
+	exports.default = persistReducer;
 	
 	var _constants = __webpack_require__(340);
 	
-	var _isStatePlainEnough = __webpack_require__(341);
+	var _autoMergeLevel = __webpack_require__(341);
 	
-	var _isStatePlainEnough2 = _interopRequireDefault(_isStatePlainEnough);
+	var _autoMergeLevel2 = _interopRequireDefault(_autoMergeLevel);
+	
+	var _createPersistoid = __webpack_require__(342);
+	
+	var _createPersistoid2 = _interopRequireDefault(_createPersistoid);
+	
+	var _getStoredState = __webpack_require__(343);
+	
+	var _getStoredState2 = _interopRequireDefault(_getStoredState);
+	
+	var _purgeStoredState = __webpack_require__(344);
+	
+	var _purgeStoredState2 = _interopRequireDefault(_purgeStoredState);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function autoRehydrate() {
-	  var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 	
-	  var stateReconciler = config.stateReconciler || defaultStateReconciler;
+	var DEFAULT_TIMEOUT = 5000;
+	/*
+	  @TODO add validation / handling for:
+	  - persisting a reducer which has nested _persist
+	  - handling actions that fire before reydrate is called
+	*/
+	function persistReducer(config, baseReducer) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (!config) throw new Error('config is required for persistReducer');
+	    if (!config.key) throw new Error('key is required in persistor config');
+	    if (!config.storage) throw new Error("redux-persist: config.storage is required. Try using one of the provided storage engines `import storage from 'redux-persist/lib/storage'`");
+	  }
 	
-	  return function (next) {
-	    return function (reducer, initialState, enhancer) {
-	      var store = next(liftReducer(reducer), initialState, enhancer);
-	      return _extends({}, store, {
-	        replaceReducer: function replaceReducer(reducer) {
-	          return store.replaceReducer(liftReducer(reducer));
-	        }
-	      });
-	    };
+	  var version = config.version !== undefined ? config.version : _constants.DEFAULT_VERSION;
+	  var debug = config.debug || false;
+	  var stateReconciler = config.stateReconciler === undefined ? _autoMergeLevel2.default : config.stateReconciler;
+	  var getStoredState = config.getStoredState || _getStoredState2.default;
+	  var timeout = config.timeout !== undefined ? config.timeout : DEFAULT_TIMEOUT;
+	  var _persistoid = null;
+	  var _purge = false;
+	  var _paused = true;
+	  var conditionalUpdate = function conditionalUpdate(state) {
+	    // update the persistoid only if we are rehydrated and not paused
+	    state._persist.rehydrated && _persistoid && !_paused && _persistoid.update(state);
+	    return state;
 	  };
 	
-	  function liftReducer(reducer) {
-	    var rehydrated = false;
-	    var preRehydrateActions = [];
-	    return function (state, action) {
-	      if (action.type !== _constants.REHYDRATE) {
-	        if (config.log && !rehydrated) preRehydrateActions.push(action); // store pre-rehydrate actions for debugging
-	        return reducer(state, action);
-	      } else {
-	        if (config.log && !rehydrated) logPreRehydrate(preRehydrateActions);
-	        rehydrated = true;
+	  return function (state, action) {
+	    var _ref = state || {},
+	        _persist = _ref._persist,
+	        rest = _objectWithoutProperties(_ref, ['_persist']);
 	
+	    var restState = rest;
+	
+	    if (action.type === _constants.PERSIST) {
+	      var _sealed = false;
+	      var _rehydrate = function _rehydrate(payload, err) {
+	        // dev warning if we are already sealed
+	        if (process.env.NODE_ENV !== 'production' && _sealed) console.error('redux-persist: rehydrate for "' + config.key + '" called after timeout.', payload, err);
+	
+	        // only rehydrate if we are not already sealed
+	        if (!_sealed) {
+	          action.rehydrate(config.key, payload, err);
+	          _sealed = true;
+	        }
+	      };
+	      timeout && setTimeout(function () {
+	        !_sealed && _rehydrate(undefined, new Error('redux-persist: persist timed out for persist key "' + config.key + '"'));
+	      }, timeout);
+	
+	      // @NOTE PERSIST resumes if paused.
+	      _paused = false;
+	
+	      // @NOTE only ever create persistoid once, ensure we call it at least once, even if _persist has already been set
+	      if (!_persistoid) _persistoid = (0, _createPersistoid2.default)(config);
+	
+	      // @NOTE PERSIST can be called multiple times, noop after the first
+	      if (_persist) return state;
+	      if (typeof action.rehydrate !== 'function' || typeof action.register !== 'function') throw new Error('redux-persist: either rehydrate or register is not a function on the PERSIST action. This can happen if the action is being replayed. This is an unexplored use case, please open an issue and we will figure out a resolution.');
+	
+	      action.register(config.key);
+	
+	      getStoredState(config).then(function (restoredState) {
+	        var migrate = config.migrate || function (s, v) {
+	          return Promise.resolve(s);
+	        };
+	        migrate(restoredState, version).then(function (migratedState) {
+	          _rehydrate(migratedState);
+	        }, function (migrateErr) {
+	          if (process.env.NODE_ENV !== 'production' && migrateErr) console.error('redux-persist: migration error', migrateErr);
+	          _rehydrate(undefined, migrateErr);
+	        });
+	      }, function (err) {
+	        _rehydrate(undefined, err);
+	      });
+	
+	      return _extends({}, baseReducer(restState, action), {
+	        _persist: { version: version, rehydrated: false }
+	      });
+	    } else if (action.type === _constants.PURGE) {
+	      _purge = true;
+	      action.result((0, _purgeStoredState2.default)(config));
+	      return _extends({}, baseReducer(restState, action), {
+	        _persist: _persist
+	      });
+	    } else if (action.type === _constants.FLUSH) {
+	      action.result(_persistoid && _persistoid.flush());
+	      return _extends({}, baseReducer(restState, action), {
+	        _persist: _persist
+	      });
+	    } else if (action.type === _constants.PAUSE) {
+	      _paused = true;
+	    } else if (action.type === _constants.REHYDRATE) {
+	      // noop on restState if purging
+	      if (_purge) return _extends({}, restState, {
+	        _persist: _extends({}, _persist, { rehydrated: true })
+	
+	        // @NOTE if key does not match, will continue to default else below
+	      });if (action.key === config.key) {
+	        var reducedState = baseReducer(restState, action);
 	        var inboundState = action.payload;
-	        var reducedState = reducer(state, action);
+	        // only reconcile state if stateReconciler and inboundState are both defined
+	        var reconciledRest = stateReconciler !== false && inboundState !== undefined ? stateReconciler(inboundState, state, reducedState, config) : reducedState;
 	
-	        return stateReconciler(state, inboundState, reducedState, config.log);
+	        var _newState = _extends({}, reconciledRest, {
+	          _persist: _extends({}, _persist, { rehydrated: true })
+	        });
+	        return conditionalUpdate(_newState);
 	      }
-	    };
-	  }
-	}
-	
-	function logPreRehydrate(preRehydrateActions) {
-	  var concernedActions = preRehydrateActions.slice(1);
-	  if (concernedActions.length > 0) {
-	    console.log('\n      redux-persist/autoRehydrate: %d actions were fired before rehydration completed. This can be a symptom of a race\n      condition where the rehydrate action may overwrite the previously affected state. Consider running these actions\n      after rehydration:\n    ', concernedActions.length, concernedActions);
-	  }
-	}
-	
-	function defaultStateReconciler(state, inboundState, reducedState, log) {
-	  var newState = _extends({}, reducedState);
-	
-	  Object.keys(inboundState).forEach(function (key) {
-	    // if initialState does not have key, skip auto rehydration
-	    if (!state.hasOwnProperty(key)) return;
-	
-	    // if initial state is an object but inbound state is null/undefined, skip
-	    if (_typeof(state[key]) === 'object' && !inboundState[key]) {
-	      if (log) console.log('redux-persist/autoRehydrate: sub state for key `%s` is falsy but initial state is an object, skipping autoRehydrate.', key);
-	      return;
 	    }
 	
-	    // if reducer modifies substate, skip auto rehydration
-	    if (state[key] !== reducedState[key]) {
-	      if (log) console.log('redux-persist/autoRehydrate: sub state for key `%s` modified, skipping autoRehydrate.', key);
-	      newState[key] = reducedState[key];
-	      return;
+	    // if we have not already handled PERSIST, straight passthrough
+	    if (!_persist) return baseReducer(state, action);
+	
+	    // run base reducer:
+	    // is state modified ? return original : return updated
+	    var newState = baseReducer(restState, action);
+	    if (newState === restState) return state;else {
+	      newState._persist = _persist;
+	      return conditionalUpdate(newState);
 	    }
-	
-	    // otherwise take the inboundState
-	    if ((0, _isStatePlainEnough2.default)(inboundState[key]) && (0, _isStatePlainEnough2.default)(state[key])) newState[key] = _extends({}, state[key], inboundState[key]); // shallow merge
-	    else newState[key] = inboundState[key]; // hard set
-	
-	    if (log) console.log('redux-persist/autoRehydrate: key `%s`, rehydrated to ', key, newState[key]);
-	  });
-	  return newState;
+	  };
 	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 340 */
@@ -47280,35 +47383,58 @@
 	'use strict';
 	
 	exports.__esModule = true;
-	var KEY_PREFIX = exports.KEY_PREFIX = 'reduxPersist:';
+	var KEY_PREFIX = exports.KEY_PREFIX = 'persist:';
+	var FLUSH = exports.FLUSH = 'persist/FLUSH';
 	var REHYDRATE = exports.REHYDRATE = 'persist/REHYDRATE';
+	var PAUSE = exports.PAUSE = 'persist/PAUSE';
+	var PERSIST = exports.PERSIST = 'persist/PERSIST';
+	var PURGE = exports.PURGE = 'persist/PURGE';
+	var REGISTER = exports.REGISTER = 'persist/REGISTER';
+	var DEFAULT_VERSION = exports.DEFAULT_VERSION = -1;
 
 /***/ }),
 /* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	exports.__esModule = true;
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
-	exports.default = isStatePlainEnough;
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _isPlainObject = __webpack_require__(46);
+	exports.default = autoMergeLevel1;
+	function autoMergeLevel1(inboundState, originalState, reducedState, _ref) {
+	  var debug = _ref.debug;
 	
-	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
+	  var newState = _extends({}, reducedState);
+	  // only rehydrate if inboundState exists and is an object
+	  if (inboundState && (typeof inboundState === 'undefined' ? 'undefined' : _typeof(inboundState)) === 'object') {
+	    Object.keys(inboundState).forEach(function (key) {
+	      // ignore _persist data
+	      if (key === '_persist') return;
+	      // if reducer modifies substate, skip auto rehydration
+	      if (originalState[key] !== reducedState[key]) {
+	        if (process.env.NODE_ENV !== 'production' && debug) console.log('redux-persist/stateReconciler: sub state for key `%s` modified, skipping.', key);
+	        return;
+	      }
+	      // otherwise hard set the new value
+	      newState[key] = inboundState[key];
+	    });
+	  }
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	  if (process.env.NODE_ENV !== 'production' && debug && inboundState && (typeof inboundState === 'undefined' ? 'undefined' : _typeof(inboundState)) === 'object') console.log('redux-persist/stateReconciler: rehydrated keys \'' + Object.keys(inboundState).join(', ') + '\'');
 	
-	function isStatePlainEnough(a) {
-	  // isPlainObject + duck type not immutable
-	  if (!a) return false;
-	  if ((typeof a === 'undefined' ? 'undefined' : _typeof(a)) !== 'object') return false;
-	  if (typeof a.asMutable === 'function') return false;
-	  if (!(0, _isPlainObject2.default)(a)) return false;
-	  return true;
+	  return newState;
 	}
+	
+	/*
+	  autoMergeLevel1: 
+	    - merges 1 level of substate
+	    - skips substate if already modified
+	*/
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 342 */
@@ -47317,177 +47443,127 @@
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	exports.__esModule = true;
-	exports.default = createPersistor;
+	exports.default = createPersistoid;
 	
 	var _constants = __webpack_require__(340);
 	
-	var _asyncLocalStorage = __webpack_require__(343);
+	// @TODO remove once flow < 0.63 support is no longer required.
 	
-	var _asyncLocalStorage2 = _interopRequireDefault(_asyncLocalStorage);
-	
-	var _purgeStoredState = __webpack_require__(345);
-	
-	var _purgeStoredState2 = _interopRequireDefault(_purgeStoredState);
-	
-	var _jsonStringifySafe = __webpack_require__(346);
-	
-	var _jsonStringifySafe2 = _interopRequireDefault(_jsonStringifySafe);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function createPersistor(store, config) {
+	function createPersistoid(config) {
 	  // defaults
-	  var serializer = config.serialize === false ? function (data) {
-	    return data;
-	  } : defaultSerializer;
-	  var deserializer = config.serialize === false ? function (data) {
-	    return data;
-	  } : defaultDeserializer;
-	  var blacklist = config.blacklist || [];
-	  var whitelist = config.whitelist || false;
+	  var blacklist = config.blacklist || null;
+	  var whitelist = config.whitelist || null;
 	  var transforms = config.transforms || [];
-	  var debounce = config.debounce || false;
-	  var keyPrefix = config.keyPrefix !== undefined ? config.keyPrefix : _constants.KEY_PREFIX;
-	
-	  // pluggable state shape (e.g. immutablejs)
-	  var stateInit = config._stateInit || {};
-	  var stateIterator = config._stateIterator || defaultStateIterator;
-	  var stateGetter = config._stateGetter || defaultStateGetter;
-	  var stateSetter = config._stateSetter || defaultStateSetter;
-	
-	  // storage with keys -> getAllKeys for localForage support
-	  var storage = config.storage || (0, _asyncLocalStorage2.default)('local');
-	  if (storage.keys && !storage.getAllKeys) {
-	    storage.getAllKeys = storage.keys;
-	  }
+	  var throttle = config.throttle || 0;
+	  var storageKey = '' + (config.keyPrefix !== undefined ? config.keyPrefix : _constants.KEY_PREFIX) + config.key;
+	  var storage = config.storage;
+	  var serialize = config.serialize === false ? function (x) {
+	    return x;
+	  } : defaultSerialize;
 	
 	  // initialize stateful values
-	  var lastState = stateInit;
-	  var paused = false;
-	  var storesToProcess = [];
+	  var lastState = {};
+	  var stagedState = {};
+	  var keysToProcess = [];
 	  var timeIterator = null;
+	  var writePromise = null;
 	
-	  store.subscribe(function () {
-	    if (paused) return;
-	
-	    var state = store.getState();
-	
-	    stateIterator(state, function (subState, key) {
-	      if (!passWhitelistBlacklist(key)) return;
-	      if (stateGetter(lastState, key) === stateGetter(state, key)) return;
-	      if (storesToProcess.indexOf(key) !== -1) return;
-	      storesToProcess.push(key);
+	  var update = function update(state) {
+	    // add any changed keys to the queue
+	    Object.keys(state).forEach(function (key) {
+	      if (!passWhitelistBlacklist(key)) return; // is keyspace ignored? noop
+	      if (lastState[key] === state[key]) return; // value unchanged? noop
+	      if (keysToProcess.indexOf(key) !== -1) return; // is key already queued? noop
+	      keysToProcess.push(key); // add key to queue
 	    });
 	
-	    var len = storesToProcess.length;
+	    //if any key is missing in the new state which was present in the lastState,
+	    //add it for processing too
+	    Object.keys(lastState).forEach(function (key) {
+	      if (state[key] === undefined) {
+	        keysToProcess.push(key);
+	      }
+	    });
 	
-	    // time iterator (read: debounce)
+	    // start the time iterator if not running (read: throttle)
 	    if (timeIterator === null) {
-	      timeIterator = setInterval(function () {
-	        if (paused && len === storesToProcess.length || storesToProcess.length === 0) {
-	          clearInterval(timeIterator);
-	          timeIterator = null;
-	          return;
-	        }
-	
-	        var key = storesToProcess.shift();
-	        var storageKey = createStorageKey(key);
-	        var endState = transforms.reduce(function (subState, transformer) {
-	          return transformer.in(subState, key);
-	        }, stateGetter(store.getState(), key));
-	        if (typeof endState !== 'undefined') storage.setItem(storageKey, serializer(endState), warnIfSetError(key));
-	      }, debounce);
+	      timeIterator = setInterval(processNextKey, throttle);
 	    }
 	
 	    lastState = state;
-	  });
+	  };
+	
+	  function processNextKey() {
+	    if (keysToProcess.length === 0) {
+	      if (timeIterator) clearInterval(timeIterator);
+	      timeIterator = null;
+	      return;
+	    }
+	
+	    var key = keysToProcess.shift();
+	    var endState = transforms.reduce(function (subState, transformer) {
+	      return transformer.in(subState, key, lastState);
+	    }, lastState[key]);
+	
+	    if (endState !== undefined) {
+	      try {
+	        stagedState[key] = serialize(endState);
+	      } catch (err) {
+	        console.error('redux-persist/createPersistoid: error serializing state', err);
+	      }
+	    } else {
+	      //if the endState is undefined, no need to persist the existing serialized content
+	      delete stagedState[key];
+	    }
+	
+	    if (keysToProcess.length === 0) {
+	      writeStagedState();
+	    }
+	  }
+	
+	  function writeStagedState() {
+	    // cleanup any removed keys just before write.
+	    Object.keys(stagedState).forEach(function (key) {
+	      if (lastState[key] === undefined) {
+	        delete stagedState[key];
+	      }
+	    });
+	
+	    writePromise = storage.setItem(storageKey, serialize(stagedState)).catch(onWriteFail);
+	  }
 	
 	  function passWhitelistBlacklist(key) {
-	    if (whitelist && whitelist.indexOf(key) === -1) return false;
-	    if (blacklist.indexOf(key) !== -1) return false;
+	    if (whitelist && whitelist.indexOf(key) === -1 && key !== '_persist') return false;
+	    if (blacklist && blacklist.indexOf(key) !== -1) return false;
 	    return true;
 	  }
 	
-	  function adhocRehydrate(incoming) {
-	    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-	
-	    var state = {};
-	    if (options.serial) {
-	      stateIterator(incoming, function (subState, key) {
-	        try {
-	          var data = deserializer(subState);
-	          var value = transforms.reduceRight(function (interState, transformer) {
-	            return transformer.out(interState, key);
-	          }, data);
-	          state = stateSetter(state, key, value);
-	        } catch (err) {
-	          if (process.env.NODE_ENV !== 'production') console.warn('Error rehydrating data for key "' + key + '"', subState, err);
-	        }
-	      });
-	    } else state = incoming;
-	
-	    store.dispatch(rehydrateAction(state));
-	    return state;
-	  }
-	
-	  function createStorageKey(key) {
-	    return '' + keyPrefix + key;
-	  }
-	
-	  // return `persistor`
-	  return {
-	    rehydrate: adhocRehydrate,
-	    pause: function pause() {
-	      paused = true;
-	    },
-	    resume: function resume() {
-	      paused = false;
-	    },
-	    purge: function purge(keys) {
-	      return (0, _purgeStoredState2.default)({ storage: storage, keyPrefix: keyPrefix }, keys);
-	    }
-	  };
-	}
-	
-	function warnIfSetError(key) {
-	  return function setError(err) {
+	  function onWriteFail(err) {
+	    // @TODO add fail handlers (typically storage full)
 	    if (err && process.env.NODE_ENV !== 'production') {
-	      console.warn('Error storing data for key:', key, err);
+	      console.error('Error storing data', err);
 	    }
+	  }
+	
+	  var flush = function flush() {
+	    while (keysToProcess.length !== 0) {
+	      processNextKey();
+	    }
+	    return writePromise || Promise.resolve();
 	  };
-	}
 	
-	function defaultSerializer(data) {
-	  return (0, _jsonStringifySafe2.default)(data, null, null, function (k, v) {
-	    if (process.env.NODE_ENV !== 'production') return null;
-	    throw new Error('\n      redux-persist: cannot process cyclical state.\n      Consider changing your state structure to have no cycles.\n      Alternatively blacklist the corresponding reducer key.\n      Cycle encounted at key "' + k + '" with value "' + v + '".\n    ');
-	  });
-	}
-	
-	function defaultDeserializer(serial) {
-	  return JSON.parse(serial);
-	}
-	
-	function rehydrateAction(data) {
+	  // return `persistoid`
 	  return {
-	    type: _constants.REHYDRATE,
-	    payload: data
+	    update: update,
+	    flush: flush
 	  };
 	}
 	
-	function defaultStateIterator(collection, callback) {
-	  return Object.keys(collection).forEach(function (key) {
-	    return callback(collection[key], key);
-	  });
-	}
+	// @NOTE in the future this may be exposed via config
 	
-	function defaultStateGetter(state, key) {
-	  return state[key];
-	}
 	
-	function defaultStateSetter(state, key, value) {
-	  state[key] = value;
-	  return state;
+	function defaultSerialize(data) {
+	  return JSON.stringify(data);
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -47498,145 +47574,44 @@
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	exports.__esModule = true;
+	exports.default = getStoredState;
 	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	var _constants = __webpack_require__(340);
 	
-	exports.default = function (type, config) {
-	  var storage = getStorage(type);
-	  return {
-	    getAllKeys: function getAllKeys(cb) {
-	      return new Promise(function (resolve, reject) {
-	        try {
-	          var keys = [];
-	          for (var i = 0; i < storage.length; i++) {
-	            keys.push(storage.key(i));
-	          }
-	          (0, _setImmediate2.default)(function () {
-	            cb && cb(null, keys);
-	            resolve(keys);
-	          });
-	        } catch (e) {
-	          cb && cb(e);
-	          reject(e);
-	        }
-	      });
-	    },
-	    getItem: function getItem(key, cb) {
-	      return new Promise(function (resolve, reject) {
-	        try {
-	          var s = storage.getItem(key);
-	          (0, _setImmediate2.default)(function () {
-	            cb && cb(null, s);
-	            resolve(s);
-	          });
-	        } catch (e) {
-	          cb && cb(e);
-	          reject(e);
-	        }
-	      });
-	    },
-	    setItem: function setItem(key, string, cb) {
-	      return new Promise(function (resolve, reject) {
-	        try {
-	          storage.setItem(key, string);
-	          (0, _setImmediate2.default)(function () {
-	            cb && cb(null);
-	            resolve();
-	          });
-	        } catch (e) {
-	          cb && cb(e);
-	          reject(e);
-	        }
-	      });
-	    },
-	    removeItem: function removeItem(key, cb) {
-	      return new Promise(function (resolve, reject) {
-	        try {
-	          storage.removeItem(key);
-	          (0, _setImmediate2.default)(function () {
-	            cb && cb(null);
-	            resolve();
-	          });
-	        } catch (e) {
-	          cb && cb(e);
-	          reject(e);
-	        }
-	      });
+	function getStoredState(config) {
+	  var transforms = config.transforms || [];
+	  var storageKey = '' + (config.keyPrefix !== undefined ? config.keyPrefix : _constants.KEY_PREFIX) + config.key;
+	  var storage = config.storage;
+	  var debug = config.debug;
+	  var deserialize = config.serialize === false ? function (x) {
+	    return x;
+	  } : defaultDeserialize;
+	  return storage.getItem(storageKey).then(function (serialized) {
+	    if (!serialized) return undefined;else {
+	      try {
+	        var state = {};
+	        var rawState = deserialize(serialized);
+	        Object.keys(rawState).forEach(function (key) {
+	          state[key] = transforms.reduceRight(function (subState, transformer) {
+	            return transformer.out(subState, key, rawState);
+	          }, deserialize(rawState[key]));
+	        });
+	        return state;
+	      } catch (err) {
+	        if (process.env.NODE_ENV !== 'production' && debug) console.log('redux-persist/getStoredState: Error restoring data ' + serialized, err);
+	        throw err;
+	      }
 	    }
-	  };
-	};
-	
-	var _setImmediate = __webpack_require__(344);
-	
-	var _setImmediate2 = _interopRequireDefault(_setImmediate);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var noStorage = function noStorage() {
-	  /* noop */return null;
-	};
-	if (process.env.NODE_ENV !== 'production') {
-	  noStorage = function noStorage() {
-	    console.error('redux-persist asyncLocalStorage requires a global localStorage object. Either use a different storage backend or if this is a universal redux application you probably should conditionally persist like so: https://gist.github.com/rt2zz/ac9eb396793f95ff3c3b');
-	    return null;
-	  };
+	  });
 	}
 	
-	function _hasStorage(storageType) {
-	  if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== 'object' || !(storageType in window)) {
-	    return false;
-	  }
-	
-	  try {
-	    var storage = window[storageType];
-	    var testKey = 'redux-persist ' + storageType + ' test';
-	    storage.setItem(testKey, 'test');
-	    storage.getItem(testKey);
-	    storage.removeItem(testKey);
-	  } catch (e) {
-	    if (process.env.NODE_ENV !== 'production') console.warn('redux-persist ' + storageType + ' test failed, persistence will be disabled.');
-	    return false;
-	  }
-	  return true;
-	}
-	
-	function hasLocalStorage() {
-	  return _hasStorage('localStorage');
-	}
-	
-	function hasSessionStorage() {
-	  return _hasStorage('sessionStorage');
-	}
-	
-	function getStorage(type) {
-	  if (type === 'local') {
-	    return hasLocalStorage() ? window.localStorage : { getItem: noStorage, setItem: noStorage, removeItem: noStorage, getAllKeys: noStorage };
-	  }
-	  if (type === 'session') {
-	    return hasSessionStorage() ? window.sessionStorage : { getItem: noStorage, setItem: noStorage, removeItem: noStorage, getAllKeys: noStorage };
-	  }
+	function defaultDeserialize(serial) {
+	  return JSON.parse(serial);
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 344 */
-/***/ (function(module, exports) {
-
-	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
-	
-	exports.__esModule = true;
-	var hasNativeSupport = typeof global !== 'undefined' && typeof global.setImmediate !== 'undefined';
-	var setImmediate = hasNativeSupport ? function (fn, ms) {
-	  return global.setImmediate(fn, ms);
-	} : function (fn, ms) {
-	  return setTimeout(fn, ms);
-	};
-	
-	exports.default = setImmediate;
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ }),
-/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -47646,88 +47621,283 @@
 	
 	var _constants = __webpack_require__(340);
 	
-	function purgeStoredState(config, keys) {
+	function purgeStoredState(config) {
 	  var storage = config.storage;
-	  var keyPrefix = config.keyPrefix !== undefined ? config.keyPrefix : _constants.KEY_PREFIX;
-	
-	  // basic validation
-	  if (Array.isArray(config)) throw new Error('redux-persist: purgeStoredState requires config as a first argument (found array). An array of keys is the optional second argument.');
-	  if (!storage) throw new Error('redux-persist: config.storage required in purgeStoredState');
-	
-	  if (typeof keys === 'undefined') {
-	    // if keys is not defined, purge all keys
-	    return new Promise(function (resolve, reject) {
-	      storage.getAllKeys(function (err, allKeys) {
-	        if (err) {
-	          if (process.env.NODE_ENV !== 'production') console.warn('redux-persist: error during purgeStoredState in storage.getAllKeys');
-	          reject(err);
-	        } else {
-	          resolve(purgeStoredState(config, allKeys.filter(function (key) {
-	            return key.indexOf(keyPrefix) === 0;
-	          }).map(function (key) {
-	            return key.slice(keyPrefix.length);
-	          })));
-	        }
-	      });
-	    });
-	  } else {
-	    // otherwise purge specified keys
-	    return Promise.all(keys.map(function (key) {
-	      return storage.removeItem('' + keyPrefix + key, warnIfRemoveError(key));
-	    }));
-	  }
+	  var storageKey = '' + (config.keyPrefix !== undefined ? config.keyPrefix : _constants.KEY_PREFIX) + config.key;
+	  return storage.removeItem(storageKey, warnIfRemoveError);
 	}
 	
-	function warnIfRemoveError(key) {
-	  return function removeError(err) {
-	    if (err && process.env.NODE_ENV !== 'production') {
-	      console.warn('Error storing data for key:', key, err);
+	function warnIfRemoveError(err) {
+	  if (err && process.env.NODE_ENV !== 'production') {
+	    console.error('redux-persist/purgeStoredState: Error purging data stored state', err);
+	  }
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 345 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.default = persistCombineReducers;
+	
+	var _redux = __webpack_require__(44);
+	
+	var _persistReducer = __webpack_require__(339);
+	
+	var _persistReducer2 = _interopRequireDefault(_persistReducer);
+	
+	var _autoMergeLevel = __webpack_require__(346);
+	
+	var _autoMergeLevel2 = _interopRequireDefault(_autoMergeLevel);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// combineReducers + persistReducer with stateReconciler defaulted to autoMergeLevel2
+	function persistCombineReducers(config, reducers) {
+	  config.stateReconciler = config.stateReconciler === undefined ? _autoMergeLevel2.default : config.stateReconciler;
+	  return (0, _persistReducer2.default)(config, (0, _redux.combineReducers)(reducers));
+	}
+
+/***/ }),
+/* 346 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	exports.__esModule = true;
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	exports.default = autoMergeLevel2;
+	function autoMergeLevel2(inboundState, originalState, reducedState, _ref) {
+	  var debug = _ref.debug;
+	
+	  var newState = _extends({}, reducedState);
+	  // only rehydrate if inboundState exists and is an object
+	  if (inboundState && (typeof inboundState === 'undefined' ? 'undefined' : _typeof(inboundState)) === 'object') {
+	    Object.keys(inboundState).forEach(function (key) {
+	      // ignore _persist data
+	      if (key === '_persist') return;
+	      // if reducer modifies substate, skip auto rehydration
+	      if (originalState[key] !== reducedState[key]) {
+	        if (process.env.NODE_ENV !== 'production' && debug) console.log('redux-persist/stateReconciler: sub state for key `%s` modified, skipping.', key);
+	        return;
+	      }
+	      if (isPlainEnoughObject(reducedState[key])) {
+	        // if object is plain enough shallow merge the new values (hence "Level2")
+	        newState[key] = _extends({}, newState[key], inboundState[key]);
+	        return;
+	      }
+	      // otherwise hard set
+	      newState[key] = inboundState[key];
+	    });
+	  }
+	
+	  if (process.env.NODE_ENV !== 'production' && debug && inboundState && (typeof inboundState === 'undefined' ? 'undefined' : _typeof(inboundState)) === 'object') console.log('redux-persist/stateReconciler: rehydrated keys \'' + Object.keys(inboundState).join(', ') + '\'');
+	
+	  return newState;
+	}
+	
+	/*
+	  autoMergeLevel2: 
+	    - merges 2 level of substate
+	    - skips substate if already modified
+	    - this is essentially redux-perist v4 behavior
+	*/
+	
+	function isPlainEnoughObject(o) {
+	  return o !== null && !Array.isArray(o) && (typeof o === 'undefined' ? 'undefined' : _typeof(o)) === 'object';
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 347 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	exports.__esModule = true;
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	exports.default = persistStore;
+	
+	var _redux = __webpack_require__(44);
+	
+	var _persistReducer = __webpack_require__(339);
+	
+	var _persistReducer2 = _interopRequireDefault(_persistReducer);
+	
+	var _constants = __webpack_require__(340);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	var initialState = {
+	  registry: [],
+	  bootstrapped: false
+	};
+	
+	var persistorReducer = function persistorReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _constants.REGISTER:
+	      return _extends({}, state, { registry: [].concat(_toConsumableArray(state.registry), [action.key]) });
+	    case _constants.REHYDRATE:
+	      var firstIndex = state.registry.indexOf(action.key);
+	      var registry = [].concat(_toConsumableArray(state.registry));
+	      registry.splice(firstIndex, 1);
+	      return _extends({}, state, { registry: registry, bootstrapped: registry.length === 0 });
+	    default:
+	      return state;
+	  }
+	};
+	
+	function persistStore(store, options, cb) {
+	  // help catch incorrect usage of passing PersistConfig in as PersistorOptions
+	  if (process.env.NODE_ENV !== 'production') {
+	    var optionsToTest = options || {};
+	    var bannedKeys = ['blacklist', 'whitelist', 'transforms', 'storage', 'keyPrefix', 'migrate'];
+	    bannedKeys.forEach(function (k) {
+	      if (!!optionsToTest[k]) console.error('redux-persist: invalid option passed to persistStore: "' + k + '". You may be incorrectly passing persistConfig into persistStore, whereas it should be passed into persistReducer.');
+	    });
+	  }
+	  var boostrappedCb = cb || false;
+	
+	  var _pStore = (0, _redux.createStore)(persistorReducer, initialState, options ? options.enhancer : undefined);
+	  var register = function register(key) {
+	    _pStore.dispatch({
+	      type: _constants.REGISTER,
+	      key: key
+	    });
+	  };
+	
+	  var rehydrate = function rehydrate(key, payload, err) {
+	    var rehydrateAction = {
+	      type: _constants.REHYDRATE,
+	      payload: payload,
+	      err: err,
+	      key: key
+	      // dispatch to `store` to rehydrate and `persistor` to track result
+	    };store.dispatch(rehydrateAction);
+	    _pStore.dispatch(rehydrateAction);
+	    if (boostrappedCb && persistor.getState().bootstrapped) {
+	      boostrappedCb();
+	      boostrappedCb = false;
+	    }
+	  };
+	
+	  var persistor = _extends({}, _pStore, {
+	    purge: function purge() {
+	      var results = [];
+	      store.dispatch({
+	        type: _constants.PURGE,
+	        result: function result(purgeResult) {
+	          results.push(purgeResult);
+	        }
+	      });
+	      return Promise.all(results);
+	    },
+	    flush: function flush() {
+	      var results = [];
+	      store.dispatch({
+	        type: _constants.FLUSH,
+	        result: function result(flushResult) {
+	          results.push(flushResult);
+	        }
+	      });
+	      return Promise.all(results);
+	    },
+	    pause: function pause() {
+	      store.dispatch({
+	        type: _constants.PAUSE
+	      });
+	    },
+	    persist: function persist() {
+	      store.dispatch({ type: _constants.PERSIST, register: register, rehydrate: rehydrate });
+	    }
+	  });
+	
+	  persistor.persist();
+	
+	  return persistor;
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	exports.__esModule = true;
+	exports.default = createMigrate;
+	
+	var _constants = __webpack_require__(340);
+	
+	function createMigrate(migrations, config) {
+	  var _ref = config || {},
+	      debug = _ref.debug;
+	
+	  return function (state, currentVersion) {
+	    if (!state) {
+	      if (process.env.NODE_ENV !== 'production' && debug) console.log('redux-persist: no inbound state, skipping migration');
+	      return Promise.resolve(undefined);
+	    }
+	
+	    var inboundVersion = state._persist && state._persist.version !== undefined ? state._persist.version : _constants.DEFAULT_VERSION;
+	    if (inboundVersion === currentVersion) {
+	      if (process.env.NODE_ENV !== 'production' && debug) console.log('redux-persist: versions match, noop migration');
+	      return Promise.resolve(state);
+	    }
+	    if (inboundVersion > currentVersion) {
+	      if (process.env.NODE_ENV !== 'production') console.error('redux-persist: downgrading version is not supported');
+	      return Promise.resolve(state);
+	    }
+	
+	    var migrationKeys = Object.keys(migrations).map(function (ver) {
+	      return parseInt(ver);
+	    }).filter(function (key) {
+	      return currentVersion >= key && key > inboundVersion;
+	    }).sort(function (a, b) {
+	      return a - b;
+	    });
+	
+	    if (process.env.NODE_ENV !== 'production' && debug) console.log('redux-persist: migrationKeys', migrationKeys);
+	    try {
+	      var migratedState = migrationKeys.reduce(function (state, versionKey) {
+	        if (process.env.NODE_ENV !== 'production' && debug) console.log('redux-persist: running migration for versionKey', versionKey);
+	        return migrations[versionKey](state);
+	      }, state);
+	      return Promise.resolve(migratedState);
+	    } catch (err) {
+	      return Promise.reject(err);
 	    }
 	  };
 	}
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 346 */
-/***/ (function(module, exports) {
-
-	exports = module.exports = stringify
-	exports.getSerialize = serializer
-	
-	function stringify(obj, replacer, spaces, cycleReplacer) {
-	  return JSON.stringify(obj, serializer(replacer, cycleReplacer), spaces)
-	}
-	
-	function serializer(replacer, cycleReplacer) {
-	  var stack = [], keys = []
-	
-	  if (cycleReplacer == null) cycleReplacer = function(key, value) {
-	    if (stack[0] === value) return "[Circular ~]"
-	    return "[Circular ~." + keys.slice(0, stack.indexOf(value)).join(".") + "]"
-	  }
-	
-	  return function(key, value) {
-	    if (stack.length > 0) {
-	      var thisPos = stack.indexOf(this)
-	      ~thisPos ? stack.splice(thisPos + 1) : stack.push(this)
-	      ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key)
-	      if (~stack.indexOf(value)) value = cycleReplacer.call(this, key, value)
-	    }
-	    else stack.push(value)
-	
-	    return replacer == null ? value : replacer.call(this, key, value)
-	  }
-	}
-
-
-/***/ }),
-/* 347 */
+/* 349 */
 /***/ (function(module, exports) {
 
 	"use strict";
 	
 	exports.__esModule = true;
-	function createTransform(inbound, outbound) {
+	exports.default = createTransform;
+	function createTransform(
+	// @NOTE inbound: transform state coming from redux on its way to being serialized and stored
+	inbound,
+	// @NOTE outbound: transform state coming from storage, on its way to be rehydrated into redux
+	outbound) {
 	  var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 	
 	  var whitelist = config.whitelist || null;
@@ -47740,209 +47910,14 @@
 	  }
 	
 	  return {
-	    in: function _in(state, key) {
-	      return !whitelistBlacklistCheck(key) && inbound ? inbound(state, key) : state;
+	    in: function _in(state, key, fullState) {
+	      return !whitelistBlacklistCheck(key) && inbound ? inbound(state, key, fullState) : state;
 	    },
-	    out: function out(state, key) {
-	      return !whitelistBlacklistCheck(key) && outbound ? outbound(state, key) : state;
+	    out: function out(state, key, fullState) {
+	      return !whitelistBlacklistCheck(key) && outbound ? outbound(state, key, fullState) : state;
 	    }
 	  };
 	}
-	
-	exports.default = createTransform;
-
-/***/ }),
-/* 348 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	exports.__esModule = true;
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	exports.default = getStoredState;
-	
-	var _constants = __webpack_require__(340);
-	
-	var _asyncLocalStorage = __webpack_require__(343);
-	
-	var _asyncLocalStorage2 = _interopRequireDefault(_asyncLocalStorage);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function getStoredState(config, onComplete) {
-	  var storage = config.storage || (0, _asyncLocalStorage2.default)('local');
-	  var deserializer = config.serialize === false ? function (data) {
-	    return data;
-	  } : defaultDeserializer;
-	  var blacklist = config.blacklist || [];
-	  var whitelist = config.whitelist || false;
-	  var transforms = config.transforms || [];
-	  var keyPrefix = config.keyPrefix !== undefined ? config.keyPrefix : _constants.KEY_PREFIX;
-	
-	  // fallback getAllKeys to `keys` if present (LocalForage compatability)
-	  if (storage.keys && !storage.getAllKeys) storage = _extends({}, storage, { getAllKeys: storage.keys });
-	
-	  var restoredState = {};
-	  var completionCount = 0;
-	
-	  storage.getAllKeys(function (err, allKeys) {
-	    if (err) {
-	      if (process.env.NODE_ENV !== 'production') console.warn('redux-persist/getStoredState: Error in storage.getAllKeys');
-	      complete(err);
-	    }
-	
-	    var persistKeys = allKeys.filter(function (key) {
-	      return key.indexOf(keyPrefix) === 0;
-	    }).map(function (key) {
-	      return key.slice(keyPrefix.length);
-	    });
-	    var keysToRestore = persistKeys.filter(passWhitelistBlacklist);
-	
-	    var restoreCount = keysToRestore.length;
-	    if (restoreCount === 0) complete(null, restoredState);
-	    keysToRestore.forEach(function (key) {
-	      storage.getItem(createStorageKey(key), function (err, serialized) {
-	        if (err && process.env.NODE_ENV !== 'production') console.warn('redux-persist/getStoredState: Error restoring data for key:', key, err);else restoredState[key] = rehydrate(key, serialized);
-	        completionCount += 1;
-	        if (completionCount === restoreCount) complete(null, restoredState);
-	      });
-	    });
-	  });
-	
-	  function rehydrate(key, serialized) {
-	    var state = null;
-	
-	    try {
-	      var data = deserializer(serialized);
-	      state = transforms.reduceRight(function (subState, transformer) {
-	        return transformer.out(subState, key);
-	      }, data);
-	    } catch (err) {
-	      if (process.env.NODE_ENV !== 'production') console.warn('redux-persist/getStoredState: Error restoring data for key:', key, err);
-	    }
-	
-	    return state;
-	  }
-	
-	  function complete(err, restoredState) {
-	    onComplete(err, restoredState);
-	  }
-	
-	  function passWhitelistBlacklist(key) {
-	    if (whitelist && whitelist.indexOf(key) === -1) return false;
-	    if (blacklist.indexOf(key) !== -1) return false;
-	    return true;
-	  }
-	
-	  function createStorageKey(key) {
-	    return '' + keyPrefix + key;
-	  }
-	
-	  if (typeof onComplete !== 'function' && !!Promise) {
-	    return new Promise(function (resolve, reject) {
-	      onComplete = function onComplete(err, restoredState) {
-	        if (err) reject(err);else resolve(restoredState);
-	      };
-	    });
-	  }
-	}
-	
-	function defaultDeserializer(serial) {
-	  return JSON.parse(serial);
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 349 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	exports.__esModule = true;
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	exports.default = persistStore;
-	
-	var _constants = __webpack_require__(340);
-	
-	var _getStoredState = __webpack_require__(348);
-	
-	var _getStoredState2 = _interopRequireDefault(_getStoredState);
-	
-	var _createPersistor = __webpack_require__(342);
-	
-	var _createPersistor2 = _interopRequireDefault(_createPersistor);
-	
-	var _setImmediate = __webpack_require__(344);
-	
-	var _setImmediate2 = _interopRequireDefault(_setImmediate);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function persistStore(store) {
-	  var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-	  var onComplete = arguments[2];
-	
-	  // defaults
-	  // @TODO remove shouldRestore
-	  var shouldRestore = !config.skipRestore;
-	  if (process.env.NODE_ENV !== 'production' && config.skipRestore) console.warn('redux-persist: config.skipRestore has been deprecated. If you want to skip restoration use `createPersistor` instead');
-	
-	  var purgeKeys = null;
-	
-	  // create and pause persistor
-	  var persistor = (0, _createPersistor2.default)(store, config);
-	  persistor.pause();
-	
-	  // restore
-	  if (shouldRestore) {
-	    (0, _setImmediate2.default)(function () {
-	      (0, _getStoredState2.default)(config, function (err, restoredState) {
-	        if (err) {
-	          complete(err);
-	          return;
-	        }
-	        // do not persist state for purgeKeys
-	        if (purgeKeys) {
-	          if (purgeKeys === '*') restoredState = {};else purgeKeys.forEach(function (key) {
-	            return delete restoredState[key];
-	          });
-	        }
-	        try {
-	          store.dispatch(rehydrateAction(restoredState, err));
-	        } finally {
-	          complete(err, restoredState);
-	        }
-	      });
-	    });
-	  } else (0, _setImmediate2.default)(complete);
-	
-	  function complete(err, restoredState) {
-	    persistor.resume();
-	    onComplete && onComplete(err, restoredState);
-	  }
-	
-	  return _extends({}, persistor, {
-	    purge: function purge(keys) {
-	      purgeKeys = keys || '*';
-	      return persistor.purge(keys);
-	    }
-	  });
-	}
-	
-	function rehydrateAction(payload) {
-	  var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-	
-	  return {
-	    type: _constants.REHYDRATE,
-	    payload: payload,
-	    error: error
-	  };
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 350 */

@@ -17,7 +17,7 @@
     "redux-logger": "^3.0.6",
     "redux-offline": "^2.0.0",
     "redux-thunk": "^2.2.0",
-    
+    "redux-persist": "5.10.0",
     "axios": "^0.15.3",
   	
     "classnames": "^2.2.5",

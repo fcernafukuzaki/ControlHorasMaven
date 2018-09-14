@@ -28,6 +28,16 @@
 
 	<script src="home.js"></script>
 	
+	
+	
+	<label class="upload-group">
+		Subir archivo CV
+		<input type="file" class="upload-group" id="file">
+	</label>
+	<button type="button" class="btn btn-primary" id="uploadButton" onclick="uploadFile()" >Subir archivo</button>
+	
+	<a href="" id="btnLogin">Iniciar sesion</a>
+	
 	<!--script src="app/bundle.js"></script-->
 	<!-- 
 	<script src="app/js/sockjs.min.js"></script>
@@ -39,6 +49,85 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	
-    
+	
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-storage.js"></script>
+	
+	<script>
+	// Initialize Firebase
+	var config = {
+	  apiKey: "AIzaSyBRZAnm6z8asWbmjb83OdaWI5X02H-8amM",
+	  authDomain: "apifirebase-6d6a5.firebaseapp.com",
+	  databaseURL: "https://apifirebase-6d6a5.firebaseio.com",
+	  projectId: "apifirebase-6d6a5",
+	  storageBucket: "apifirebase-6d6a5.appspot.com",
+	  messagingSenderId: "933434062060"
+	};
+	firebase.initializeApp(config);
+	</script>
+	
+	<script language="javascript">
+	var btnLogin = document.getElementById("btnLogin");
+	console.log(btnLogin);
+		
+		$(document).ready(function(){
+		  
+			
+		  $("#uploadButton").hide();
+			firebase.auth().onAuthStateChanged(function(user){
+				console.log(user);
+				if(user ){
+					console.log("tenemos usuario");
+				} else {
+					console.log("NO tenemos usuario");
+				}
+			})
+		});
+
+		btnLogin.addEventListener("click", function(event){
+			event.preventDefault();
+			var provider = new firebase.auth.GoogleAuthProvider();
+			provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+			firebase.auth().signInWithPopup(provider)
+			.then(function(datosUsuario){
+				console.log(datosUsuario);
+			}).catch(function(error){
+				console.log(error);
+			})
+		})
+		
+		var selectedFile;
+		$("#file").on("change",function(event){
+			selectedFile = event.target.files[0];
+			$("#uploadButton").show();
+			
+		});
+
+		function uploadFile(){
+			var filename = selectedFile.name;
+			var storageRef = firebase.storage().ref('/test/' + filename);
+			
+			var uploadTask = storageRef.put(selectedFile);
+			uploadTask.on('state_changed', function(snapshot){
+				console.log(snapshot.bytesTransferred);
+				console.log("snapshot",snapshot);
+			}, function(error){
+				
+			}, function(){
+				var downloadURL = uploadTask.snapshot.downloadURL;
+				console.log(downloadURL);
+
+				storageRef.getDownloadURL().then(function(url) {
+				  console.log(url);
+				});
+				//console.log(uploadTask.snapshot);
+			}
+
+			);
+			
+		}
+		
+	</script>
 </body>
 </html>
